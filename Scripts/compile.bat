@@ -1,1 +1,0 @@
-csc /out:..\bin\Program.exe ..\Main.cs

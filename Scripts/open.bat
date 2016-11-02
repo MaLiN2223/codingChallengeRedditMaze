@@ -1,1 +1,0 @@
-start "" ..\bin\Program.exe
