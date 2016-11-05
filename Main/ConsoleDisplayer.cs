@@ -1,39 +1,23 @@
-﻿namespace Main
+﻿namespace ConsoleGame
 {
     using System;
     using System.Diagnostics;
-
-    public class ConsoleDisplayer
+    using GameLibrary;
+    using GameLibrary.Blocks;
+    using GameLibrary.Game;
+    public class ConsoleDisplayer : AbstractDisplayer
     {
-        public void ShowEndMessage(GameEndException.GameEndReason reason)
+        public override void ShowEndMessage(GameEndException.GameEndReason reason)
         {
             if (reason == GameEndException.GameEndReason.ExitFound)
                 Console.WriteLine("GAME HAS ENDED");
-        }
-        public void ShowMaze(Maze maze)
-        {
-            for (int i = 0; i < maze.X; ++i)
-            {
-                for (int j = 0; j < maze.Y; ++j)
-                {
-                    Console.Write(GetValue(maze[i, j]));
-                }
-                Console.WriteLine("");
-            }
-        }
-        public void MovePlayer(int currentX, int currentY, int nextX, int nextY, Block player)
-        {
-            Clear(currentX, currentY); 
-            WriteOnPosition(nextX, nextY, player);
-            Debug.WriteLine($"On console {currentX},{currentY} -> {nextX},{nextY}");
-        }
-
-        public void WriteOnPosition(int x, int y, Block c)
+        } 
+        public override void WriteOnPosition(int x, int y, Block c)
         {
             WriteOnPosition(x, y, GetValue(c));
         }
 
-        public void DisplayDebug(string value)
+        public override void DisplayDebug(string value)
         {
             var left = Console.CursorLeft;
             var top = Console.CursorTop;
@@ -47,10 +31,6 @@
             Console.SetCursorPosition(y, x);
             Console.Write(c);
             Console.SetCursorPosition(left, top);
-        }
-        public void Clear(int x, int y)
-        {
-            WriteOnPosition(x, y, Empty);
         }
 
         private static char Empty = ' ';

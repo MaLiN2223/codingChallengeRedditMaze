@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1DBFD044-CDB2-4F8A-AB48-FC7552351755}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{BAB10ACD-5BF8-456D-988D-37294BD7310D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleGame</RootNamespace>
-    <AssemblyName>ConsoleGame</AssemblyName>
+    <RootNamespace>GameLibrary</RootNamespace>
+    <AssemblyName>GameLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,19 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleDisplayer.cs" />
-    <Compile Include="ConsoleGame.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Blocks\Block.cs" />
+    <Compile Include="Blocks\Empty.cs" />
+    <Compile Include="Blocks\Exit.cs" />
+    <Compile Include="GameEndException.cs" />
+    <Compile Include="Game\AbstractDisplayer.cs" />
+    <Compile Include="Game\AbstractGame.cs" />
+    <Compile Include="Game\IDisplayer.cs" />
+    <Compile Include="Game\IGame.cs" />
+    <Compile Include="Maze.cs" />
+    <Compile Include="MazeCreator.cs" />
+    <Compile Include="MazeMaster.cs" />
+    <Compile Include="Blocks\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GameLibrary\GameLibrary.csproj">
-      <Project>{bab10acd-5bf8-456d-988d-37294bd7310d}</Project>
-      <Name>GameLibrary</Name>
-    </ProjectReference>
+    <Compile Include="Blocks\Wall.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

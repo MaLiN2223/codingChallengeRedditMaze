@@ -1,28 +1,27 @@
-﻿namespace Main
+﻿namespace GameLibrary
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
+    using Blocks;
+    using Game;
 
     public class MazeMaster
     {
-        private Maze maze;
+        private Maze maze; 
+        public Tuple<int, int> PlayerPosition;
+        private readonly IDisplayer displayer;
+
+        public MazeMaster(string configFile, IDisplayer displayer)
+        {
+            var mazeData = MazeCreator.MazeFromFile(configFile);
+            PlayerPosition = mazeData.Item2;
+            maze = mazeData.Item1;
+            this.displayer = displayer;
+        }
 
         public void ShowMaze()
         {
             displayer.ShowMaze(maze);
         }
-         
-        public MazeMaster(string file)
-        {
-            var mazeData = MazeCreator.MazeFromFile(file);
-            PlayerPosition = mazeData.Item2;
-            maze = mazeData.Item1;
-            displayer = new ConsoleDisplayer();
-        }
-
-        public Tuple<int, int> PlayerPosition;
-        private readonly ConsoleDisplayer displayer;
 
         private bool IsNextBlockOkay(int x, int y)
         {
@@ -126,7 +125,7 @@
         {
             maze[PlayerPosition.Item1, PlayerPosition.Item2] = new Empty();
             maze[nextX, nextY] = player;
-            displayer.MovePlayer(PlayerPosition.Item1, PlayerPosition.Item2, nextX, nextY, player);
+            displayer.MoveBlock(PlayerPosition.Item1, PlayerPosition.Item2, nextX, nextY, player);
             PlayerPosition = new Tuple<int, int>(nextX, nextY);
         }
 

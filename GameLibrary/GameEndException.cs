@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Main
+﻿namespace GameLibrary
 {
+    using System;
+
     public class GameEndException : Exception
     {
         private GameEndReason reason;

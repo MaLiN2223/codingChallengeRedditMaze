@@ -1,18 +1,19 @@
 ﻿using System;
 
-namespace Main
+namespace ConsoleGame
 {
     using System.Diagnostics;
+    using GameLibrary;
+    using GameLibrary.Game;
 
-    public class ConsoleGame
-    {
-        private MazeMaster master;
-        public ConsoleGame(MazeMaster master)
+    public class ConsoleGame : AbstractGame
+    { 
+        public ConsoleGame(MazeMaster master) : base(master)
         {
             this.master = master;
         }
 
-        public void Start()
+        public override void Start()
         {
             master.ShowMaze();
             try
@@ -51,7 +52,7 @@ namespace Main
             Debug.WriteLine($"On maze {master.PlayerPosition.Item1},{master.PlayerPosition.Item2}");
         }
 
-        public void DisplayDebug(string data)
+        public override void DisplayDebug(string data)
         {
             master.DisplayDebug(data);
         }
