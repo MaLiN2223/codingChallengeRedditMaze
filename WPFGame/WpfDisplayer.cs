@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace WPFGame
 {
     using System.Globalization;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -21,34 +22,34 @@ namespace WPFGame
             this.canvas = canvas;
             widthPerBlock = 10;
             heightPerBlock = 10;
-        } 
+        }
         private readonly Canvas canvas;
-        private double heightPerBlock;
-        private double widthPerBlock;
-        private double epsilon = 0.0;
+        private readonly double heightPerBlock;
+        private readonly double widthPerBlock;
+        private const double epsilon = 0.0;
         private Rectangle wall => new Rectangle
         {
             Width = widthPerBlock,
-            Height = heightPerBlock, 
+            Height = heightPerBlock,
             Fill = Brushes.Black
         };
 
         private Ellipse player => new Ellipse
         {
             Width = widthPerBlock,
-            Height = heightPerBlock,  
+            Height = heightPerBlock,
             Fill = Brushes.Red
         };
         private Rectangle exit => new Rectangle
         {
             Width = widthPerBlock,
-            Height = heightPerBlock, 
+            Height = heightPerBlock,
             Fill = Brushes.Green
         };
         private Rectangle empty => new Rectangle
         {
             Width = widthPerBlock,
-            Height = heightPerBlock, 
+            Height = heightPerBlock,
             Fill = Brushes.White
 
         };
@@ -76,6 +77,11 @@ namespace WPFGame
 
         }
 
+        protected override void ShowText(string data)
+        {
+            MessageBox.Show(data);
+        }
+
         public override void WriteOnPosition(int x, int y, Block c)
         {
             double realX = x * (heightPerBlock + epsilon);
@@ -92,11 +98,7 @@ namespace WPFGame
         }
         public override void DisplayDebug(string value)
         {
-            throw new NotImplementedException();
-        }
-        public override void ShowEndMessage(GameEndException.GameEndReason reason)
-        {
-            throw new NotImplementedException();
+            MessageBox.Show(value);
         }
     }
 }

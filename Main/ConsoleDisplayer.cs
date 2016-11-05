@@ -7,11 +7,11 @@
     using GameLibrary.Game;
     public class ConsoleDisplayer : AbstractDisplayer
     {
-        public override void ShowEndMessage(GameEndException.GameEndReason reason)
+        protected override void ShowText(string data)
         {
-            if (reason == GameEndException.GameEndReason.ExitFound)
-                Console.WriteLine("GAME HAS ENDED");
-        } 
+            Console.WriteLine(data); 
+        }
+
         public override void WriteOnPosition(int x, int y, Block c)
         {
             WriteOnPosition(x, y, GetValue(c));

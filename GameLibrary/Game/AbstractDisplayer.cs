@@ -4,7 +4,12 @@
 
     public abstract class AbstractDisplayer : IDisplayer
     {
-        public abstract void ShowEndMessage(GameEndException.GameEndReason reason);
+        protected abstract void ShowText(string data);
+        public void ShowEndMessage(GameEndException.GameEndReason reason)
+        {
+            if (reason == GameEndException.GameEndReason.ExitFound)
+                ShowText("You just won!");
+        }
 
         public void ShowMaze(Maze maze)
         {

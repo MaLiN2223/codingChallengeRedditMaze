@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 
 namespace WPFGame
 {
@@ -19,27 +19,44 @@ namespace WPFGame
 
         public override void Start()
         {
-            master.ShowMaze(); 
+            master.ShowMaze();
+            IsPlaying = true;
         }
+
+        private bool IsPlaying = false;
         public void MakeAction(KeyEventArgs e)
         {
-            switch (e.Key)
+            if (!IsPlaying)
+                return;
+
+            try
             {
-                case Key.Up:
-                    master.MoveUp();
-                    break;
-                case Key.Down:
-                    master.MoveDown();
-                    break;
-                case Key.Right:
-                    master.MoveRight();
-                    break;
-                case Key.Left:
-                    master.MoveLeft();
-                    break;
-                default:
-                    return;
-            } 
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        master.MoveUp();
+                        break;
+                    case Key.Down:
+                        master.MoveDown();
+                        break;
+                    case Key.Right:
+                        master.MoveRight();
+                        break;
+                    case Key.Left:
+                        master.MoveLeft();
+                        break;
+                    default:
+                        return;
+                }
+            }
+            catch (GameEndException)
+            {
+                var data = MessageBox.Show("Do you want to try again?", "Again?", MessageBoxButton.YesNo);
+                if (data.HasFlag(MessageBoxResult.OK))
+                    Start();
+                if (data.HasFlag(MessageBoxResult.No))
+                    IsPlaying = false;
+            }
         }
     }
 }
