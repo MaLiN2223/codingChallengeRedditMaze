@@ -84,11 +84,47 @@ namespace WPFGame
             MessageBox.Show(data);
         }
 
+        private Shape GetShape(double x, double y)
+        {
+            foreach (UIElement child in canvas.Children)
+            {
+                var shape = child as Shape;
+                if (shape == null)
+                    continue;
+                if (Math.Abs(Canvas.GetLeft(shape) - y) <= 0.1 && Math.Abs(Canvas.GetTop(shape) - x) <= 0.1)
+                {
+                    return shape;
+                }
+            }
+            return null;
+        }
+        public override void MoveBlock(int currentX, int currentY, int nextX, int nextY, Block block)
+        {
+            var currentRealX = RealX(currentX);
+            var currentRealY = RealY(currentY);
+            var nextRealX = RealX(nextX);
+            var nextRealY = RealY(nextY);
+            var shape = GetShape(currentRealX, currentRealY);
+            Canvas.SetTop(shape, nextRealX);
+            Canvas.SetLeft(shape, nextRealY);
+
+        }
+
         public override void WriteOnPosition(int x, int y, Block c)
         {
-            double realX = x * (heightPerBlock + epsilon);
-            double realY = y * (heightPerBlock + epsilon);
+            double realX = RealX(x);
+            double realY = RealY(y);
             WriteOnPosition(realX, realY, GetShape(c));
+        }
+
+        private double RealY(int y)
+        {
+            return y * (heightPerBlock + epsilon);
+        }
+
+        private double RealX(int x)
+        {
+            return x * (widthPerBlock + epsilon);
         }
 
         public override void MovePlayer(Direction dir)

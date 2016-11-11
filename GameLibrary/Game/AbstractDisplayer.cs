@@ -23,11 +23,7 @@ namespace GameLibrary.Game
                 }
             }
         }
-        public void MoveBlock(int currentX, int currentY, int nextX, int nextY, Block block)
-        {
-            Clear(currentX, currentY);
-            WriteOnPosition(nextX, nextY, block);
-        }
+        public abstract void MoveBlock(int currentX, int currentY, int nextX, int nextY, Block block);
 
         public abstract void WriteOnPosition(int x, int y, Block c);
         public abstract void DisplayDebug(string value);
