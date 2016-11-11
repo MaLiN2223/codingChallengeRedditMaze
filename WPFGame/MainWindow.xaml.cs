@@ -25,7 +25,7 @@ namespace WPFGame
         private WpfGame game;
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
@@ -35,8 +35,12 @@ namespace WPFGame
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var master = new MazeMaster("maze1.txt", new WpfDisplayer(MainCanvas));
-            game = new WpfGame(master);
+            StartNewGame();
+        }
+
+        private void StartNewGame()
+        {
+            game = new WpfGame(MainCanvas);
             game.Start();
         }
     }
