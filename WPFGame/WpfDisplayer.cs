@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Ink;
 
 namespace WPFGame
 {
-    using System.Globalization;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Shapes;
-    using GameLibrary;
     using GameLibrary.Blocks;
     using GameLibrary.Game;
 
@@ -82,6 +75,11 @@ namespace WPFGame
         protected override void ShowText(string data)
         {
             MessageBox.Show(data);
+        }
+
+        protected override void ClearMaze()
+        {
+            canvas.Children.Clear();
         }
 
         private Shape GetShape(double x, double y)

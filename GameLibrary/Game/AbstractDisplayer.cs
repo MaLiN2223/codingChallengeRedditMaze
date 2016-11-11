@@ -13,8 +13,10 @@ namespace GameLibrary.Game
                 ShowText("You just won!");
         }
 
+        protected abstract void ClearMaze();
         public void ShowMaze(Maze maze)
         {
+            ClearMaze();
             for (int i = 0; i < maze.X; ++i)
             {
                 for (int j = 0; j < maze.Y; ++j)

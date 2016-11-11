@@ -28,7 +28,6 @@ namespace WPFGame
         {
             if (!IsPlaying)
                 return;
-
             try
             {
                 switch (e.Key)
