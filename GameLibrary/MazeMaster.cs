@@ -1,6 +1,7 @@
 ﻿namespace GameLibrary
 {
     using System;
+    using System.Collections.Generic;
     using Blocks;
     using Game;
     /// <summary>
@@ -11,15 +12,36 @@
         private Maze maze;
         public Tuple<int, int> PlayerPosition;
         private readonly IDisplayer displayer;
+        private static readonly Random random = new Random();
 
         public MazeMaster(string configFile, IDisplayer displayer)
         {
             var mazeData = MazeCreator.MazeFromFile(configFile);
             PlayerPosition = mazeData.Item2;
             maze = mazeData.Item1;
+            if (PlayerPosition == null)
+            {
+                RandomizePlayerPosition(maze, out PlayerPosition);
+                maze[PlayerPosition.Item1,PlayerPosition.Item2]  = new Player();
+            }
             this.displayer = displayer;
         }
 
+        private static void RandomizePlayerPosition(Maze maze, out Tuple<int, int> PlayerPosition)
+        {
+            List<Tuple<int, int>> list = new List<Tuple<int, int>>();
+            for (int i = 0; i < maze.X; ++i)
+            {
+                for (int j = 0; j < maze.Y; ++j)
+                {
+                    if (maze[i, j] is Empty)
+                    {
+                        list.Add(new Tuple<int, int>(i, j));
+                    }
+                }
+            }
+            PlayerPosition = list[random.Next(0, list.Count)];
+        }
         public void MovePlayer(Direction direction)
         {
             if ((direction.IsUp() && direction.IsDown()) || (direction.IsLeft() && direction.IsRight()))
