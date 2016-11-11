@@ -79,7 +79,7 @@ namespace WPFGame
 
         protected override void ClearMaze()
         {
-            canvas.Children.Clear();
+            canvas.Children.Clear(); 
         }
 
         private Shape GetShape(double x, double y)

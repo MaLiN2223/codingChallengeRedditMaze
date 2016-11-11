@@ -3,15 +3,18 @@
 namespace WPFGame
 {
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Input;
     using GameLibrary;
     using GameLibrary.Game;
     class WpfGame : AbstractGame
     {
-        public WpfGame(MazeMaster master) : base(master)
+        private MazeMaster master;
+        private Canvas canvas;
+        public WpfGame(Canvas canvas)
         {
+            this.canvas = canvas;
         }
-
         public override void DisplayDebug(string data)
         {
             MessageBox.Show(data);
@@ -19,6 +22,7 @@ namespace WPFGame
 
         public override void Start()
         {
+            master = new MazeMaster("maze1.txt", new WpfDisplayer(canvas));
             master.ShowMaze();
             IsPlaying = true;
         }
@@ -51,7 +55,7 @@ namespace WPFGame
             catch (GameEndException)
             {
                 var data = MessageBox.Show("Do you want to try again?", "Again?", MessageBoxButton.YesNo);
-                if (data.HasFlag(MessageBoxResult.OK))
+                if (data.HasFlag(MessageBoxResult.Yes))
                     Start();
                 if (data.HasFlag(MessageBoxResult.No))
                     IsPlaying = false;
