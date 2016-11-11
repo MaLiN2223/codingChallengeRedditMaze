@@ -46,6 +46,7 @@
     <Compile Include="GameEndException.cs" />
     <Compile Include="Game\AbstractDisplayer.cs" />
     <Compile Include="Game\AbstractGame.cs" />
+    <Compile Include="Game\Direction.cs" />
     <Compile Include="Game\IDisplayer.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Maze.cs" />

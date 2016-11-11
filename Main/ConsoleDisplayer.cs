@@ -17,6 +17,15 @@
             WriteOnPosition(x, y, GetValue(c));
         }
 
+        public override void MovePlayer(Direction dir)
+        {
+            throw new NotImplementedException();
+        }
+        public void MoveBlock(int currentX, int currentY, int nextX, int nextY, Block block)
+        {
+            Clear(currentX, currentY);
+            WriteOnPosition(nextX, nextY, block);
+        }
         public override void DisplayDebug(string value)
         {
             var left = Console.CursorLeft;
