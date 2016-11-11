@@ -7,7 +7,7 @@ namespace ConsoleGame
     using GameLibrary.Game;
 
     public class ConsoleGame : AbstractGame
-    { 
+    {
         public ConsoleGame(MazeMaster master) : base(master)
         {
             this.master = master;
@@ -35,16 +35,16 @@ namespace ConsoleGame
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    master.MoveUp();
+                    master.MovePlayer(Direction.Up);
                     break;
                 case ConsoleKey.DownArrow:
-                    master.MoveDown();
+                    master.MovePlayer(Direction.Down);
                     break;
                 case ConsoleKey.RightArrow:
-                    master.MoveRight();
+                    master.MovePlayer(Direction.Right);
                     break;
                 case ConsoleKey.LeftArrow:
-                    master.MoveLeft();
+                    master.MovePlayer(Direction.Left);
                     break;
                 default:
                     return;

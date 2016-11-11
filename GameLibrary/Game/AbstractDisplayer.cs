@@ -1,4 +1,6 @@
-﻿namespace GameLibrary.Game
+﻿using System;
+
+namespace GameLibrary.Game
 {
     using Blocks;
 
@@ -26,9 +28,10 @@
             Clear(currentX, currentY);
             WriteOnPosition(nextX, nextY, block);
         }
+
         public abstract void WriteOnPosition(int x, int y, Block c);
         public abstract void DisplayDebug(string value);
-
+        public abstract void MovePlayer(Direction dir);
         public void Clear(int x, int y)
         {
             WriteOnPosition(x, y, new Empty());

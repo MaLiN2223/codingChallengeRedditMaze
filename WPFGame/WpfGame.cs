@@ -34,16 +34,16 @@ namespace WPFGame
                 switch (e.Key)
                 {
                     case Key.Up:
-                        master.MoveUp();
+                        master.MovePlayer(Direction.Up);
                         break;
                     case Key.Down:
-                        master.MoveDown();
+                        master.MovePlayer(Direction.Down);
                         break;
                     case Key.Right:
-                        master.MoveRight();
+                        master.MovePlayer(Direction.Right);
                         break;
                     case Key.Left:
-                        master.MoveLeft();
+                        master.MovePlayer(Direction.Left);
                         break;
                     default:
                         return;
